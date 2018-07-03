@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perceptual /r/ ratings</title>
+        <meta name="description" content="Montclair State University Clinical Biofeedback Laboratory">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="biofeedback-style.css"> -->
+        <link rel="stylesheet" type="text/css" href="../static/biofeedbackstudystyle.css">
+        <style>
+        #entry {
+				height:auto;
+			}
+        </style>
+    </head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li style="color:blue;font-size:150%;">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %} 
+        
+    <body>
+    
+    	<div class="container-fluid">
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<h4>Perceptual /r/ ratings</h4>
+    				<span>Logged in as {{ session['username'] }} || <a href="{{ url_for('logout') }}">Log out</a></span>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="entry">
+		    <p style="font-size:.9em;">Welcome! If this is your first time rating on this site, please review the instructions at 
+                          the bottom of the page.</p>
+                    <span><b>Your Training Score:</b> {{ practicescore }}% (<a href="{{ url_for('training') }}">Retry here</a>)</span><br/>
+                    <span><b>Your Test Score:</b> {{ testscore }}% (80% required)</span><br/>
+		    <br>
+		    <a href="{{ url_for('test') }}"><b>Test trials</b></a><br/>
+                    <span style="font-size:0.7em;">Click the link above to complete test trials for calibration. You must achieve a test score of 80% before you may 
+						   continue to the sets below.</span><br/>
+                    <br/>
+		    <p>Adult Sets</p>
+		    <a href="{{ url_for('page', dumpnum=39)}}">Set 1</a><br/>
+                    <a href="{{ url_for('page', dumpnum=40)}}">Set 2</a><br/>
+                    <a href="{{ url_for('page', dumpnum=41)}}">Set 3</a><br/>
+                    <a href="{{ url_for('page', dumpnum=42)}}">Set 4</a><br/>
+                    <a href="{{ url_for('page', dumpnum=43)}}">Set 5</a><br/>
+                    <span style="font-size:0.7em;">RE-CALIBRATE (click Test trials link above)</span><br/>
+		    <a href="{{ url_for('page', dumpnum=44)}}">Set 6</a><br/>
+                    <a href="{{ url_for('page', dumpnum=45)}}">Set 7</a><br/>
+                    <a href="{{ url_for('page', dumpnum=46)}}">Set 8</a><br/>
+                    <a href="{{ url_for('page', dumpnum=47)}}">Set 9</a><br/>
+                    <a href="{{ url_for('page', dumpnum=48)}}">Set 10</a><br/>
+                    <span style="font-size:0.7em;">RE-CALIBRATE (click Test trials link above)</span><br/>
+		    <a href="{{ url_for('page', dumpnum=49)}}">Set 11</a><br/>
+                    <a href="{{ url_for('page', dumpnum=50)}}">Set 12</a><br/>
+                    <a href="{{ url_for('page', dumpnum=51)}}">Set 13</a><br/>
+                    <a href="{{ url_for('page', dumpnum=52)}}">Set 14</a><br/>
+                    <a href="{{ url_for('page', dumpnum=53)}}">Set 15</a><br/>
+                    <span style="font-size:0.7em;">RE-CALIBRATE (click Test trials link above)</span><br/>
+		    <a href="{{ url_for('page', dumpnum=54)}}">Set 16</a><br/>
+                    <a href="{{ url_for('page', dumpnum=55)}}">Set 17</a><br/>
+                    <a href="{{ url_for('page', dumpnum=56)}}">Set 18</a><br/>
+                    <a href="{{ url_for('page', dumpnum=57)}}">Set 19</a><br/>
+                    <a href="{{ url_for('page', dumpnum=58)}}">Set 20</a><br/>
+                    
+                    <!-- <p>Original Adult Sets</p>
+                    <a href="{{ url_for('page', dumpnum=1)}}">Set 1</a><br/>
+                    <a href="{{ url_for('page', dumpnum=2)}}">Set 2</a><br/>
+                    <a href="{{ url_for('page', dumpnum=3)}}">Set 3</a><br/>
+                    <a href="{{ url_for('page', dumpnum=4)}}">Set 4</a><br/>
+                    <a href="{{ url_for('page', dumpnum=5)}}">Set 5</a><br/>
+                    <a href="{{ url_for('page', dumpnum=6)}}">Set 6</a><br/>
+                    <a href="{{ url_for('page', dumpnum=7)}}">Set 7</a><br/> -->
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    		
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<span class="glyphicon glyphicon-info-sign"></span> Instructions<br />
+    				Select a set to work on. You must complete the full set of test trials 
+                    		accurately before continuing on to the other sets.
+				<span style="color:red;"><b>After every five sets</b></span>, please complete the set of 
+				test trials again in order to recalibrate.
+				<br/>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	</div>
+    </body>
+</html>

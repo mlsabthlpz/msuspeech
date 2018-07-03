@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perceptual /r/ ratings</title>
+        <meta name="description" content="Montclair State University Clinical Biofeedback Laboratory">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="biofeedback-style.css"> -->
+        <link rel="stylesheet" type="text/css" href="../static/biofeedbackstudystyle.css">
+    </head>
+        
+    <body>
+    
+    	<div class="container-fluid">
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<h4>Perceptual /r/ ratings</h4>
+    				<span>Logged in as {{ session['username'] }}, Set {{ dumpdisplay }}: 
+    				Item {{ usercount }} of {{ total }} || <a href="{{ url_for('rctmenu') }}">Return to Menu</a>
+                    || <a href="{{ url_for('logout') }}">Log out</a></span>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="entry">
+    				<form action="{{ url_for('rctresults') }}" method="post" id="form">
+    					<input type='hidden' class="meta" id="word" name="word" value="{{ word }}" />
+    					<input type='hidden' class="meta" id="rater" name="rater" value="{{ session['username'] }}" />
+    					<input type='hidden' class="meta" id="url" name="url" value="{{ filename }}" />
+    					<input type='hidden' class="meta" id="playtime" name="playtime" value="" />
+    					<input type='hidden' class="meta" id="clicktime" name="clicktime" value="" />
+                        <input type='hidden' class="meta" id="itemnum" name="itemnum" value="{{ entry }}" />
+                        <input type='hidden' class="meta" id="usercount" name="usercount" value="{{ usercount }}" />
+                        <input type='hidden' class="meta" id="dump" name="dump" value="{{ dump }}" />
+    					<p>Rate the /r/ {{ position }}.</p>
+    					<button type="button" class="btn btn-default" onclick="document.getElementById('audio').play()" id="play" name="play" aria-label="Play" autofocus>
+    					<span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+    					<audio id="audio" name="audio" preload="none" src="{{ filepath }}"></audio>
+    					<span id="nomoreaudio"></span><br/>
+    					<button type="submit" class="btn btn-default" value="1" name="rating">Correct<br/><span class="glyphicon glyphicon-thumbs-up"></span></button>
+    					<button type="submit" class="btn btn-default" value="0" name="rating">Incorrect<br/><span class="glyphicon glyphicon-thumbs-down"></span></button>
+    					<br />
+    					<span id="alert"></span>
+					</form>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    		
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<span class="glyphicon glyphicon-info-sign"></span> Instructions<br />
+    				Rate each production of /r/ as correct or incorrect. Only rate
+    				productions of /r/ as correct if they sound like an adult-like
+    				production. 
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	</div>
+
+	<script>
+	$(document).ready(function() {
+		var audio = $( "#audio" );
+		var audioplayer = $( "#play" );
+		var audiomsg = $( "#nomoreaudio" );
+		var playcount = 0;
+		var alert = $( "#alert" );
+		
+		audio.on('ended', function() {
+			if (playcount == 4) {
+				audio.hide()
+				audioplayer.hide()
+				audiomsg.html("You've listened five times.")
+				}
+			else if (playcount == 0){
+				playcount++;
+				var playedat = new Date();
+				var playtime = playedat.toString();
+  				$('#playtime').val(playtime);
+				}
+			else {
+				playcount++;
+				}
+			});
+		
+		$( '#form' ).submit(function(event) {
+			if (playcount == 0) {
+				if(event.preventDefault) {
+            		event.preventDefault();
+            		alert.html("Listen to the audio first!");
+            		}
+         		else {
+           			event.returnValue = false;
+           			}
+           		}
+           	else {
+           		var submittime = new Date();
+           		var clicktime = submittime.toString();
+  				$('#clicktime').val(clicktime);
+                }
+        	});
+
+	});
+	</script>
+
+
+    </body>
+</html>

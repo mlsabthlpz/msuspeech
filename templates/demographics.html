@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perceptual /r/ ratings</title>
+        <meta name="description" content="Montclair State University Clinical Biofeedback Laboratory">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="biofeedback-style.css"> -->
+        <link rel="stylesheet" type="text/css" href="../static/biofeedbackstudystyle.css">
+        <style>
+			#entry {
+				height:auto;
+				text-align:left;
+			}
+			p {
+				font-size:.9em;
+				color:black;
+				margin-top:24px;
+			}
+        </style>
+    </head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}    
+
+    <body>
+    
+    	<div class="container-fluid">
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<h4>Perceptual /r/ ratings</h4>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="entry">
+    				<form action="{{ url_for('welcome') }}" method="post" id="form">
+    					<div class="form-group">
+							Welcome! Please answer the following questions about your language background.
+
+							<p>
+							<label>In what year were you born?</label> <br>
+								<select name="yearofbirth" style="width: 10em;  left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option>2010</option><option>2009</option><option>2008</option><option>2007</option><option>2006</option><option>2005</option><option>2004</option><option>2003</option><option>2002</option><option>2001</option><option>2000</option><option>1999</option><option>1998</option><option>1997</option><option>1996</option><option>1995</option><option>1994</option><option>1993</option><option>1992</option><option>1991</option><option>1990</option><option>1989</option><option>1988</option><option>1987</option><option>1986</option><option>1985</option><option>1984</option><option>1983</option><option>1982</option><option>1981</option><option>1980</option><option>1979</option><option>1978</option><option>1977</option><option>1976</option><option>1975</option><option>1974</option><option>1973</option><option>1972</option><option>1971</option><option>1970</option><option>1969</option><option>1968</option><option>1967</option><option>1966</option><option>1965</option><option>1964</option><option>1963</option><option>1962</option><option>1961</option><option>1960</option><option>1959</option><option>1958</option><option>1957</option><option>1956</option><option>1955</option><option>1954</option><option>1953</option><option>1952</option><option>1951</option><option>1950</option><option>1949</option><option>1948</option><option>1947</option><option>1946</option><option>1945</option><option>1944</option><option>1943</option><option>1942</option><option>1941</option><option>1940</option><option>1939</option><option>1938</option><option>1937</option><option>1936</option><option>1935</option><option>1934</option><option>1933</option><option>1932</option><option>1931</option><option>1930</option><option>1929</option><option>1928</option><option>1927</option><option>1926</option><option>1925</option><option>1924</option><option>1923</option><option>1922</option><option>1921</option><option>1920</option><option>1919</option><option>1918</option><option>1917</option><option>1916</option><option>1915</option><option>1914</option><option>1913</option><option>1912</option><option>1911</option><option>1910</option><option>1909</option><option>1908</option><option>1907</option><option>1906</option><option>1905</option><option>1904</option><option>1903</option><option>1902</option><option>1901</option><option>1900</option>
+								</select>
+
+							<p>
+
+							<label>Are you a native speaker of English?</label><br>
+								<select name="onlyenglish" style="width: 10em; left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option value="1">yes</option>
+									<option value="0">no</option>
+								</select>
+	
+							<p style="padding-left:2em;">
+
+							<label>If your answer to the above was no, at what age did you learn English?</label><br>
+							<input type="text" name="englishacquired" style="padding: 0px; width=20em;" size="30" maxlength="2">
+							</p>
+
+							<p>
+							<label>What variety of English do you speak?</label><br>
+							<select name="englishvariety">
+							<option value="none">Please choose</option>
+							<option value="Am">North American</option>
+							<option value="Br">British, Scottish or Irish</option>
+							<option value="Aus">Australian or NZ</option>
+							<option value="other">other</option>
+							</select>
+							</p>
+
+
+							<p>
+							<label>Do you consider yourself a speaker of a rhotic variety of English?</label><br>
+							<select name="englishrhotic">
+							<option value="none">Please choose</option>
+							<option value="1">Yes</option>
+							<option value="0">No</option>
+							<option value="na">I don't know</option>
+							</select>
+							</p>
+
+
+							<p>
+							<label>In what state do you currently reside?</label><br>
+							<select name="statereside"> 
+							<option value="none">Select a State</option> 
+							<option value="outside">Outside the USA</option> 
+							<option value="AL">Alabama</option> 
+							<option value="AK">Alaska</option> 
+							<option value="AZ">Arizona</option> 
+							<option value="AR">Arkansas</option> 
+							<option value="CA">California</option> 
+							<option value="CO">Colorado</option> 
+							<option value="CT">Connecticut</option> 
+							<option value="DE">Delaware</option> 
+							<option value="DC">District Of Columbia</option> 
+							<option value="FL">Florida</option> 
+							<option value="GA">Georgia</option> 
+							<option value="HI">Hawaii</option> 
+							<option value="ID">Idaho</option> 
+							<option value="IL">Illinois</option> 
+							<option value="IN">Indiana</option> 
+							<option value="IA">Iowa</option> 
+							<option value="KS">Kansas</option> 
+							<option value="KY">Kentucky</option> 
+							<option value="LA">Louisiana</option> 
+							<option value="ME">Maine</option> 
+							<option value="MD">Maryland</option> 
+							<option value="MA">Massachusetts</option> 
+							<option value="MI">Michigan</option> 
+							<option value="MN">Minnesota</option> 
+							<option value="MS">Mississippi</option> 
+							<option value="MO">Missouri</option> 
+							<option value="MT">Montana</option> 
+							<option value="NE">Nebraska</option> 
+							<option value="NV">Nevada</option> 
+							<option value="NH">New Hampshire</option> 
+							<option value="NJ">New Jersey</option> 
+							<option value="NM">New Mexico</option> 
+							<option value="NY">New York</option> 
+							<option value="NC">North Carolina</option> 
+							<option value="ND">North Dakota</option> 
+							<option value="OH">Ohio</option> 
+							<option value="OK">Oklahoma</option> 
+							<option value="OR">Oregon</option> 
+							<option value="PA">Pennsylvania</option> 
+							<option value="RI">Rhode Island</option> 
+							<option value="SC">South Carolina</option> 
+							<option value="SD">South Dakota</option> 
+							<option value="TN">Tennessee</option> 
+							<option value="TX">Texas</option> 
+							<option value="UT">Utah</option> 
+							<option value="VT">Vermont</option> 
+							<option value="VA">Virginia</option> 
+							<option value="WA">Washington</option> 
+							<option value="WV">West Virginia</option> 
+							<option value="WI">Wisconsin</option> 
+							<option value="WY">Wyoming</option>
+							</select>
+							</p>
+
+							<p>
+							<label>In what state did you grow up? (If multiple, choose the state 
+							that you believe had the most impact on your speech/accent.)</label><br>
+							<select name="stategrewup"> 
+							<option value="none">Select a State</option> 
+							<option value="outside">Outside the USA</option> 
+							<option value="AL">Alabama</option> 
+							<option value="AK">Alaska</option> 
+							<option value="AZ">Arizona</option> 
+							<option value="AR">Arkansas</option> 
+							<option value="CA">California</option> 
+							<option value="CO">Colorado</option> 
+							<option value="CT">Connecticut</option> 
+							<option value="DE">Delaware</option> 
+							<option value="DC">District Of Columbia</option> 
+							<option value="FL">Florida</option> 
+							<option value="GA">Georgia</option> 
+							<option value="HI">Hawaii</option> 
+							<option value="ID">Idaho</option> 
+							<option value="IL">Illinois</option> 
+							<option value="IN">Indiana</option> 
+							<option value="IA">Iowa</option> 
+							<option value="KS">Kansas</option> 
+							<option value="KY">Kentucky</option> 
+							<option value="LA">Louisiana</option> 
+							<option value="ME">Maine</option> 
+							<option value="MD">Maryland</option> 
+							<option value="MA">Massachusetts</option> 
+							<option value="MI">Michigan</option> 
+							<option value="MN">Minnesota</option> 
+							<option value="MS">Mississippi</option> 
+							<option value="MO">Missouri</option> 
+							<option value="MT">Montana</option> 
+							<option value="NE">Nebraska</option> 
+							<option value="NV">Nevada</option> 
+							<option value="NH">New Hampshire</option> 
+							<option value="NJ">New Jersey</option> 
+							<option value="NM">New Mexico</option> 
+							<option value="NY">New York</option> 
+							<option value="NC">North Carolina</option> 
+							<option value="ND">North Dakota</option> 
+							<option value="OH">Ohio</option> 
+							<option value="OK">Oklahoma</option> 
+							<option value="OR">Oregon</option> 
+							<option value="PA">Pennsylvania</option> 
+							<option value="RI">Rhode Island</option> 
+							<option value="SC">South Carolina</option> 
+							<option value="SD">South Dakota</option> 
+							<option value="TN">Tennessee</option> 
+							<option value="TX">Texas</option> 
+							<option value="UT">Utah</option> 
+							<option value="VT">Vermont</option> 
+							<option value="VA">Virginia</option> 
+							<option value="WA">Washington</option> 
+							<option value="WV">West Virginia</option> 
+							<option value="WI">Wisconsin</option> 
+							<option value="WY">Wyoming</option>
+							</select></p>
+
+							<p>
+								<label>Have you ever been diagnosed with a hearing impairment?</label><br>
+								<select name="hearingimpairment" style="width: 10em; left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+	
+							<p>
+								<label>Have you ever been diagnosed with a speech or language impairment?</label> <br>
+								<select name="speechimpairment" style="width: 10em; left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+
+							<p>
+	
+							<p>	
+								<label>Have you ever received training as a speech-language pathologist or linguist?</label>
+								<select name="receivedtraining" style="width: 10em; left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</p>	
+
+							<p style="padding-left:2em;">
+							<label>If your answer to was yes, what is the highest level of training have you completed?</label> <br>
+							<select name="receivedtraininglevel" style="width: 29em; left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option value="coursework">Some coursework in speech-language pathology or linguistics</option>
+									<option value="bachelors">Bachelor's degree in speech-language pathology or linguistics</option>
+									<option value="masters">Master's degree in speech-language pathology or linguistics</option>
+									<option value="phd">PhD in speech-language pathology or linguistics</option>
+								</select>
+							</p>
+
+							<p>	
+								<label>Are you currently employed as a speech-language pathologist or linguist?</label> 	
+								<select name="employed" style="width: 10em; left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option value="1">Yes</option>
+								<option value="0">No</option>
+								</select>
+							</p>	
+
+							<p style="padding-left:2em;">
+								<label>If your answer was yes, does your job involve analyzing or transcribing the speech of children?</label><br>
+								<select name="transcribing" style="width: 10em; left:12em; margin-top:2px;">
+									<option value="none">Please choose</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</p>	
+
+							<p style="padding-left:4em;">
+								<label>If your answer was yes, approximately how many hours per week do you spend analyzing or transcribing child speech?</label>
+								<input type="text" name="hourstranscribing" style="padding: 0px; width=20em;" size="30" maxlength="3">
+							</p>	
+
+							<p>
+								<label>In an average week, approximately how many hours do you spend interacting with children aged 14 and below?</label> <br>
+							<input type="text" name="timespentchildren" style="padding: 0px; width=20em;" size="30" maxlength="3">
+							</p>
+							
+							<p>
+								<label>You should be wearing headphones for the experiment. What is the brand of your headphones?</label> <br>
+							<input type="text" name="headphones" style="padding: 0px; width=20em;" size="30" maxlength="30">
+							</p>
+							
+							<p>
+								<label>Please choose a username.</label> <br>
+							<input type="text" name="userid" style="padding: 0px; width=20em;" size="30" maxlength="12">
+							</p>
+
+						</div>
+    					<button type="submit" class="btn btn-default" value="submit" name="submit">Submit</button>
+    					<br />
+					</form>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    		
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	</div>
+
+
+    </body>
+</html>

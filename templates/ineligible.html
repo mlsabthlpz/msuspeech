@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perceptual /r/ ratings</title>
+        <meta name="description" content="Montclair State University Clinical Biofeedback Laboratory">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="biofeedback-style.css"> -->
+        <link rel="stylesheet" type="text/css" href="../static/biofeedbackstudystyle.css">
+        <style>
+        #entry {
+				height:auto;
+			}
+        </style>
+        
+    </head>
+        
+    <body>
+    
+    	<div class="container-fluid">
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<h4>Perceptual /r/ ratings</h4>
+    				<span>Logged in as {{ session['username'] }} || <a href="{{ url_for('menu') }}">Return to Menu</a>
+                    || <a href="{{ url_for('logout') }}">Log out</a></span>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="entry">
+                    <span>Your test score does not meet our eligibility requirements. You are receiving this message because (a) you have not achieved a sufficient score on 100 test items or (b) you must rate the test items again in order to recalibrate. Please return to the menu.</span>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    		
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	</div>
+    </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perceptual /r/ ratings</title>
+        <meta name="description" content="Montclair State University Clinical Biofeedback Laboratory">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="biofeedback-style.css"> -->
+        <link rel="stylesheet" type="text/css" href="../static/biofeedbackstudystyle.css">
+        <style>
+            #entry {
+                height:auto;
+            }
+            #sbmt {
+                visibility:hidden;
+            }
+        </style>
+    </head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li style="color:blue;font-size:150%;">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+         
+    <body>
+    
+    	<div class="container-fluid">
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<h4>Perceptual /r/ ratings</h4>
+    				<span>Logged in as {{ session['username'] }}, {{ pagetype }}: 
+    				Item {{ num }} of {{ total }} || <a href="{{ url_for('menu') }}">Return to Menu</a>
+                    || <a href="{{ url_for('logout') }}">Log out</a></span>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="entry">
+    				<form action="{{ action }}" method="post" id="form">
+    					<input type='hidden' class="meta" id="word" name="word" value="{{ word }}" />
+    					<input type='hidden' class="meta" id="rater" name="rater" value="{{ session['username'] }}" />
+    					<input type='hidden' class="meta" id="url" name="url" value="{{ filename }}" />
+    					<input type='hidden' class="meta" id="playtime" name="playtime" value="" />
+    					<input type='hidden' class="meta" id="clicktime" name="clicktime" value="" />
+              			<input type='hidden' class="meta" id="cor" name="cor" value="{{ accuracy }}" />
+              			<input type="hidden" class="meta" id="pagetype" name="pagetype" value="{{ pagetype }}">
+              			<input type="hidden" class="meta" id="num" name="num" value="{{ num }}">
+              			<input type="hidden" class="meta" id="dump" name="dump" value="{{ dump }}">
+    					<p>{{ word }}</p>
+    					<button type="button" class="btn btn-default" onclick="document.getElementById('audio').play()" id="play" name="play" aria-label="Play" autofocus>
+    					<span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+    					<audio id="audio" name="audio" preload="none" src="{{ filepath }}"></audio>
+    					<span id="nomoreaudio"></span><br/>
+    					<button type="button" class="btn btn-default" value="1" name="rate">Correct<br/><span class="glyphicon glyphicon-thumbs-up"></span></button>
+    					<button type="button" class="btn btn-default" value="0" name="rate">Incorrect<br/><span class="glyphicon glyphicon-thumbs-down"></span></button>
+                        <input type="hidden" class="meta" id="rating" name="rating" value="">
+                        <br />
+    					<span id="alert"></span><br/>
+                        <button type="submit" class="btn btn-default" id="sbmt" value="submit" name="submit">Continue</button>
+					</form>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    		
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<span class="glyphicon glyphicon-info-sign"></span> Instructions<br />
+    				{{ instructions }} 
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	</div>
+
+	<script>
+	$(document).ready(function() {
+		var audio = $( "#audio" );
+		var audioplayer = $( "#play" );
+		var audiomsg = $( "#nomoreaudio" );
+		var playcount = 0;
+		var alert = $( "#alert" );
+		
+		audio.on('ended', function() {
+			if (playcount == 2) {
+				audio.hide()
+				audioplayer.hide()
+				audiomsg.html("You've listened three times.")
+				}
+			else if (playcount == 0){
+				playcount++;
+				var playedat = new Date();
+				var playtime = playedat.toString();
+  				$('#playtime').val(playtime);
+				}
+			else {
+				playcount++;
+				}
+			});
+
+        $( '[name="rate"]' ).click(function(event) {
+			if (playcount == 0) {
+				if(event.preventDefault) {
+            		event.preventDefault();
+            		alert.html("Listen to the audio first!");
+            		}
+         		else {
+           			event.returnValue = false;
+           			}
+           		}
+           	else {
+           		var submittime = new Date();
+           		var clicktime = submittime.toString();
+  				$('#clicktime').val(clicktime);
+                $('#rating').val($(this).val());
+                if ($('#pagetype').val() == "Practice") {
+                    $('[name="rate"]').prop('disabled', true);
+                    $('#sbmt').css('visibility', 'visible')
+                    if ($(this).val() == $('#cor').val()){
+                        if ($(this).val() == 1) {
+                            alert.html("Our expert raters agree! That's a correct /r/ production.");
+                        }
+                        else {
+                            alert.html("Our expert raters agree! That's an incorrect /r/ production.");
+                        };
+                    }
+                    else {
+                        if ($(this).val() == 1) {
+                            alert.html("Our expert raters disagree. They rated this as an incorrect /r/ production.");
+                        }
+                        else {
+                            alert.html("Our expert raters disagree! They rated this as a correct /r/ production.");
+                        };
+                    };
+                }
+                else {
+                    $('#form').submit();
+                    $('#sbmt').show();
+                    $('#sbmt').click();
+                };
+            };
+        });
+    });
+	</script>
+
+    </body>
+</html>

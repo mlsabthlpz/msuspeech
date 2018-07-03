@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perceptual /r/ ratings</title>
+        <meta name="description" content="Montclair State University Clinical Biofeedback Laboratory">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="biofeedback-style.css"> -->
+        <link rel="stylesheet" type="text/css" href="../static/biofeedbackstudystyle.css">
+        <style>
+        #entry {
+            height:auto;
+			}
+        </style>
+    </head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li style="color:blue;font-size:150%;">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %} 
+        
+    <body>
+    
+    	<div class="container-fluid">
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<h4>Perceptual /r/ ratings</h4>
+    				<span>Logged in as {{ session['username'] }} || <a href="{{ url_for('logout') }}">Log out</a></span>
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="entry">
+                    <p><u>RCT Data Sets</u></p>
+                    <p>Initial /r/</p>
+                    <a href="{{ url_for('rctpage', dumpnum=59)}}">Set 1</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=60)}}">Set 2</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=61)}}">Set 3</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=62)}}">Set 4</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=63)}}">Set 5</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=64)}}">Set 6</a><br/>
+                    <p>/r/ Clusters</p>
+                    <a href="{{ url_for('rctpage', dumpnum=65)}}">Set 7</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=66)}}">Set 8</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=67)}}">Set 9</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=68)}}">Set 10</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=69)}}">Set 11</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=70)}}">Set 12</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=71)}}">Set 13</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=72)}}">Set 14</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=73)}}">Set 15</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=74)}}">Set 16</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=75)}}">Set 17</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=76)}}">Set 18</a><br/>
+                    <p>Schwar</p>
+                    <a href="{{ url_for('rctpage', dumpnum=77)}}">Set 19</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=78)}}">Set 20</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=79)}}">Set 21</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=80)}}">Set 22</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=81)}}">Set 23</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=82)}}">Set 24</a><br/>
+                    <p>Post-vocalic /r/</p>
+                    <a href="{{ url_for('rctpage', dumpnum=83)}}">Set 25</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=84)}}">Set 26</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=85)}}">Set 27</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=86)}}">Set 28</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=87)}}">Set 29</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=88)}}">Set 30</a><br/>
+                    
+                    <!-- ****DATA FROM FIRST RCT PERCEPTION STUDY****
+                    <p><u>RCT Data Sets</u></p>
+                    <p>Initial /r/</p>
+                    <a href="{{ url_for('rctpage', dumpnum=8)}}">Set 1</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=9)}}">Set 2</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=10)}}">Set 3</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=11)}}">Set 4</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=12)}}">Set 5</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=13)}}">Set 6</a><br/>
+                    <p>/r/ Clusters</p>
+                    <a href="{{ url_for('rctpage', dumpnum=14)}}">Set 7</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=15)}}">Set 8</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=16)}}">Set 9</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=17)}}">Set 10</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=18)}}">Set 11</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=19)}}">Set 12</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=20)}}">Set 13</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=21)}}">Set 14</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=22)}}">Set 15</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=23)}}">Set 16</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=24)}}">Set 17</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=25)}}">Set 18</a><br/>
+                    <p>Schwar</p>
+                    <a href="{{ url_for('rctpage', dumpnum=26)}}">Set 19</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=27)}}">Set 20</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=28)}}">Set 21</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=29)}}">Set 22</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=30)}}">Set 23</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=31)}}">Set 24</a><br/>
+                    <p>Post-vocalic /r/</p>
+                    <a href="{{ url_for('rctpage', dumpnum=32)}}">Set 25</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=33)}}">Set 26</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=34)}}">Set 27</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=35)}}">Set 28</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=36)}}">Set 29</a><br/>
+                    <a href="{{ url_for('rctpage', dumpnum=37)}}">Set 30</a><br/>
+                    <p>Initial Position Revisited</p>
+                    <a href="{{ url_for('rctpage', dumpnum=38)}}">Set 31</a><br/> -->
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    		
+    		<div class="row">
+    			<div class="col-sm-3">
+    			</div>
+    		
+    			<div class="col-sm-6" id="header">
+    				<span class="glyphicon glyphicon-info-sign"></span> Instructions<br />
+    				Select a set to work on!
+    			</div>
+    			
+    			<div class="col-sm-3">
+    			</div>
+    		</div>
+    	</div>
+    </body>
+</html>
